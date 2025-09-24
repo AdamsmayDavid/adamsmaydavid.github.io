@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Projects</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+    background: linear-gradient(
+     #161831,#161831ea, #161831d7, #16183180,  #16183107, #161831 
+        ),
+     url('/portfolio_app/assets/images/5ssAsset\ 4.png') center/cover no-repeat;
+     background-color: #161831;
+      z-index: 10 !important;
+      position: relative;
+      opacity: 5; 
+      color: #e9ecef;
+      font-family: 'Orbitron', sans-serif;
+      transition: background 0.6s ease-in-out;
+      overflow-x: hidden;
+      width: 100%;
+      height: 100vh;
+      background-attachment: fixed;
+      background-size: cover;
+      background-position: center;
+    }
+
+    h2.tittle {
+      color: #ff0066;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+
+    /* Fix dropdown z-index */
+    .dropdown-menu {
+      z-index: 2000 !important;
+      position: absolute;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 50px;
+    }
+
+    .project-card {
+      border-radius: 12px;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px #ff0066, 0 0 30px #ff0066;
+    }
+
+    .project-card:hover img {
+      transform: scale(1.1);
+    }
+
+    /* Info text */
+    .project-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(22, 24, 49, 0.9);
+      color: #fff;
+      padding: 12px;
+      text-align: center;
+      font-weight: 600;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+      z-index: 2;
+    }
+
+    .project-card:hover .project-info {
+      transform: translateY(0);
+    }
+
+    .dropdown-item.active {
+      background-color: #ff0066 !important;
+      color: #fff !important;
+    }
+  </style>
+</head>
+<body>
+
+  <section id="projects" class="py-5">
+    <div class="container">
+      <h2 class="mb-4 text-center tittle">All Projects</h2>
+
+      <!-- Dropdown Filter -->
+      <div class="dropdown mb-4 text-center">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+          Filter Projects
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="filterDropdown">
+          <li><a class="dropdown-item filter-btn active" data-filter="all">All</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="website">Website</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="branding">Branding</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="photo">Photo Manipulation</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="logo">Logo Design</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="mobile">Mobile Apps</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="ecommerce">E-Commerce</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="illustration">Illustrations</a></li>
+          <li><a class="dropdown-item filter-btn" data-filter="uiux">UI/UX Design</a></li>
+        </ul>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="project-grid">
+        <div class="project-card" data-category="website" data-bg="https://picsum.photos/id/1011/1600/900">
+          <img src="https://picsum.photos/id/1011/600/400" alt="Website">
+          <div class="project-info">Website Project</div>
+        </div>
+        <div class="project-card" data-category="branding" data-bg="https://picsum.photos/id/1012/1600/900">
+          <img src="https://picsum.photos/id/1012/600/400" alt="Branding">
+          <div class="project-info">Branding Project</div>
+        </div>
+        <div class="project-card" data-category="photo" data-bg="https://picsum.photos/id/1013/1600/900">
+          <img src="https://picsum.photos/id/1013/600/400" alt="Photo">
+          <div class="project-info">Photo Manipulation</div>
+        </div>
+        <div class="project-card" data-category="logo" data-bg="https://picsum.photos/id/1014/1600/900">
+          <img src="https://picsum.photos/id/1014/600/400" alt="Logo">
+          <div class="project-info">Logo Design</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Filtering logic
+    const filterBtns = document.querySelectorAll(".filter-btn");
+    filterBtns.forEach(btn=>{
+      btn.addEventListener("click",()=>{
+        filterBtns.forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+
+        const filter = btn.getAttribute("data-filter");
+        document.querySelectorAll(".project-card").forEach(item=>{
+          if(filter==="all" || item.dataset.category===filter){
+            item.style.display="block";
+          } else {
+            item.style.display="none";
+          }
+        });
+      });
+    });
+
+    // Background hover logic with gradient overlay
+    const cards = document.querySelectorAll(".project-card");
+    const body = document.body;
+    const defaultBg = "linear-gradient(rgba(22,24,49,0.95), rgba(22,24,49,0.8), rgba(22,24,49,0.95)), #161831";
+
+    cards.forEach(card=>{
+      const bg = card.getAttribute("data-bg");
+      card.addEventListener("mouseenter", ()=>{
+        body.style.background = `linear-gradient(rgba(22,24,49,0.95), rgba(22,24,49,0.8), rgba(22,24,49,0.95)), url(${bg}) center/cover no-repeat fixed`;
+      });
+      card.addEventListener("mouseleave", ()=>{
+        body.style.background = ''; 
+      });
+    });
+  </script>
+</body>
+</html>

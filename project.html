@@ -109,7 +109,7 @@
       <!-- Dropdown Filter -->
       <div class="dropdown mb-4 text-center">
         <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-          Filter Projects
+          Projects
         </button>
         <ul class="dropdown-menu" aria-labelledby="filterDropdown">
           <li><a class="dropdown-item filter-btn active" data-filter="all">All</a></li>
@@ -166,6 +166,13 @@
         });
       });
     });
+    // Update dropdown button text when an option is clicked
+const dropdownBtn = document.getElementById("filterDropdown");
+document.querySelectorAll(".dropdown-menu .filter-btn").forEach(option => {
+  option.addEventListener("click", function () {
+    dropdownBtn.textContent = this.textContent;
+  });
+});
 
     // Background hover logic with gradient overlay
     const cards = document.querySelectorAll(".project-card");

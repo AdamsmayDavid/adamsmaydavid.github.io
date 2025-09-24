@@ -478,3 +478,46 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
+
+
+//reload for contact form
+
+const form = document.getElementById("contactForm");
+const messageBox = document.getElementById("formMessage");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+  const data = new FormData(form);
+  
+  fetch(form.action, {
+    method: form.method,
+    body: data,
+    redirect: "follow"
+  })
+  .then(response => response.json())
+  .then(result => {
+    // Web3Forms returns result.success = true/false
+    if(result.success){
+      showMessage("Form submitted successfully!", "#ff0066");
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        messageBox.style.display = "none";
+        form.reset();
+      }, 2000);
+    } else {
+      showMessage("Submission failed. Try again.", "#ff0066");
+      setTimeout(() => messageBox.style.display = "none", 3000);
+    }
+  })
+  .catch(error => {
+    console.error(error);
+    showMessage("Submission failed. Try again.", "#ff0066");
+    setTimeout(() => messageBox.style.display = "none", 3000);
+  });
+});
+
+function showMessage(text, bgColor){
+  messageBox.textContent = text;
+  messageBox.style.background = bgColor;
+  messageBox.style.display = "block";
+}

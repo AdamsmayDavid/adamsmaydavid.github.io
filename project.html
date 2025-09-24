@@ -181,6 +181,17 @@
         body.style.background = ''; 
       });
     });
+
+    document.querySelectorAll('.scroll-to').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault(); // Prevent default anchor behavior
+    const targetId = link.getAttribute('data-target');
+    const targetElement = document.getElementById(targetId);
+    targetElement.scrollIntoView({ behavior: 'smooth' });
+    history.replaceState(null, null, ' '); // Remove hash from URL
+  });
+});
+
   </script>
 </body>
 </html>

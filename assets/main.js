@@ -96,7 +96,7 @@ class Star {
   draw() {
     ctx.fillStyle = "#ff0066";
     ctx.shadowBlur = 10;
-    ctx.shadowColor = "#00c6ff";
+    ctx.shadowColor = "#4CAF50";
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
     ctx.fill();
@@ -146,7 +146,7 @@ function init() {
   }
 
   planets.push(new Planet(80, 8, 0.01, "#ffcc00"));  // yellow
-  planets.push(new Planet(150, 12, 0.008, "#00ffcc")); // teal
+  planets.push(new Planet(150, 12, 0.008, "#4CAF50")); // teal
   planets.push(new Planet(220, 6, 0.006, "#ff0066"));  // pink
 }
 init();
@@ -193,7 +193,7 @@ window.addEventListener('scroll', function () {
   const scrollY = window.scrollY;
 
   // Hero content fade/slide
-  if (scrollY > 500) {
+  if (scrollY > 800) {
     heroContent.classList.add('removed');
   } else {
     heroContent.classList.remove('removed');
@@ -521,3 +521,28 @@ function showMessage(text, bgColor){
   messageBox.style.background = bgColor;
   messageBox.style.display = "block";
 }
+
+//footer 
+ // kunin yung current year
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+
+  // for backgeound song 
+
+  //  const music = document.getElementById("bg-music");
+  //   const toggleBtn = document.getElementById("musicToggle");
+  //   let isPlaying = false;
+
+  //   toggleBtn.addEventListener("click", () => {
+  //     if (isPlaying) {
+  //       music.pause();
+  //       toggleBtn.textContent = "▶️"; // play icon
+  //     } else {
+  //       music.play().then(() => {
+  //         toggleBtn.textContent = "🔊"; // sound icon
+  //       }).catch(err => {
+  //         console.error("Playback failed:", err);
+  //       });
+  //     }
+  //     isPlaying = !isPlaying;
+  //   });

@@ -79,7 +79,7 @@ nav.bg-trans {
 }
 
 .navbar-brand img {
-  width: 90px !important;
+  width: 40px !important;
   transition: transform 0.3s ease;
 }
 
@@ -187,14 +187,18 @@ nav.bg-trans {
   justify-content: center;
   text-align: center;
   color: white;
-  z-index: 0; /* Ensures it's above canvas */
+  z-index: 1; /* keep above canvas */
   background: transparent;
-  
 }
 
-.hero img{
+/* .hero img{
   width: 30%;
   height: auto;
+} */
+
+#home {
+  height: 150vh; /* give scroll space */
+  position: relative;
 }
 
 /* Canvas background */
@@ -210,11 +214,10 @@ canvas#universe {
 
 /* Hero Content Container */
 .hero .container {
-  position: relative;
+  position: fixed !important;
   z-index: 2;
-  
-  
 }
+
 
 /* Hide on scroll */
 #heroContent {
@@ -229,10 +232,32 @@ canvas#universe {
 .highlight {
   color: #ff0066;
 }
-
 .highlight-1 {
-  color: #ff0066;
+  margin-top: none !important;
+  margin: 20px !important;
 }
+
+.highlight-1 .img1{
+ width: 70% ;
+ height: auto;
+}
+
+/* .img1 {
+  animation: wave-animation 2.5s infinite;
+  transform-origin: 100% 70%;
+  display: inline-block;
+}
+@keyframes wave-animation {
+  0% { transform: rotate(0.0deg); }
+  10% { transform: rotate(14.0deg); }
+  20% { transform: rotate(-8.0deg); }
+  30% { transform: rotate(14.0deg); }
+  40% { transform: rotate(-4.0deg); }
+  50% { transform: rotate(10.0deg); }
+  60%, 100% { transform: rotate(0.0deg); }
+} */
+
+
 
 /* Buttons */
 .hero .btn-change {
@@ -262,32 +287,33 @@ canvas#universe {
 /* Animated Typing Text */
 .animated-text p span.typed-text {
   font-weight: normal;
-  color: #ff0066;
+  color: #4CAF50;
 }
 .animated-text p span.cursor {
   display: inline-block;
-  background-color: #00ffcc;
+  background-color: #4CAF50;
   width: 2px;
   animation: blink 1s infinite;
 }
 @keyframes blink {
-  0%, 49%, 100% { background-color: #ff0066; }
+  0%, 49%, 100% { background-color: #4CAF50; }
   50%, 99% { background-color: transparent; }
 }
 
 /* Emoji Animation */
 .emoji {
   display: inline-block;
-  font-size: 1.5em;
+  font-size: 2rem !important;
   animation: float 2s ease-in-out infinite, glow 1.5s ease-in-out infinite alternate;
+  margin:  none !important;
 }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
 @keyframes glow {
-  from { text-shadow: 0 0 5px #00c6ff, 0 0 10px #00c6ff; }
-  to { text-shadow: 0 0 15px #00f7ff, 0 0 25px #00f7ff; }
+  from { text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50; }
+  to { text-shadow: 0 0 15px #4CAF50, 0 0 25px #4CAF50; }
 }
 
 /* Wave Animation */
@@ -507,6 +533,7 @@ canvas#universe {
     .about-card h2 {
       font-weight: 600;
       font-size: 1.8rem;
+    
       
     }
 
@@ -840,11 +867,13 @@ canvas#universe {
     background-size: cover;
     background-attachment: fixed;
     transition: background 0.3s ease-in-out;
+    z-index: 9999 !important;
+    position: relative !important;
+   
   }
 
-#portfolio .container {
-  margin-top: 100px;
-}
+/* #portfolio .container {
+} */
 #portfolio h2 {
   color: #ff0066;
   font-family: 'Orbitron', sans-serif;
@@ -865,6 +894,7 @@ canvas#universe {
   height: 100%;
   object-fit: cover;
   transition: transform 0.5s ease;
+  cursor: pointer !important;
 }
 #portfolio .img-container:hover img {
   transform: scale(1.2) rotate(1deg);
@@ -886,6 +916,7 @@ canvas#universe {
   backdrop-filter: blur(6px);
   opacity: 0;
   transition: opacity 0.4s ease, transform 0.4s ease;
+  z-index: 9999 !important;
 }
 #portfolio .img-container:hover .caption {
   opacity: 1;
@@ -1334,4 +1365,5 @@ color: #00c6ff;
   color: #ff0066; /* highlight color */
   transform: scale(1.2);
 }
+
 

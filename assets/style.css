@@ -60,7 +60,7 @@ body {
 font-family: 'Orbitron', sans-serif;
 }
 
-a {
+/* a {
   color: #1e1e1e;
   transition: all 0.5s ease-in-out;
 }
@@ -69,7 +69,7 @@ a:hover {
   color: #B11226;
   text-decoration: none;
   transition: all 0.5s ease-in-out;
-}
+} */
 
 /* Navbar */
 
@@ -86,6 +86,7 @@ nav.bg-trans {
 .navbar-brand img:hover {
   transform: scale(1.1);
 }
+
 
 /* Nav Links */
 .navbar-nav .nav-link {
@@ -117,6 +118,17 @@ nav.bg-trans {
 .navbar-nav .nav-link:hover::after {
   width: 100%;
 }
+
+/* Active (current page) */
+.navbar-nav .nav-link.active {
+  color: #ff0066 !important;
+}
+
+/* Make the underline visible for active too */
+.navbar-nav .nav-link.active::after {
+  width: 100%;
+}
+
 
 /* Navbar js smooth trans */
 
@@ -867,7 +879,7 @@ canvas#universe {
     background-size: cover;
     background-attachment: fixed;
     transition: background 0.3s ease-in-out;
-    z-index: 9999 !important;
+  
     position: relative !important;
    
   }

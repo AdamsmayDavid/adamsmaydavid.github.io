@@ -17,6 +17,81 @@
 
 // Reload animation end
 
+//hover nav links
+
+ //active animation link
+// Active animation link
+document.addEventListener("DOMContentLoaded", () => {
+  // Only get nav links that actually point to a section (start with # and not just '#')
+  const navLinks = Array.from(document.querySelectorAll('.navbar-nav .nav-link'))
+    .filter(link => link.getAttribute('href').startsWith('#') && link.getAttribute('href') !== '#');
+
+  // Map to actual section elements
+  const sections = navLinks.map(link => {
+    const id = link.getAttribute('href').slice(1);
+    return document.getElementById(id);
+  }).filter(Boolean); // remove nulls
+
+  function activateOnScroll() {
+    const scrollPos = window.scrollY + window.innerHeight / 3;
+
+    // Special case: if near the top, make Home active
+    if (window.scrollY < 100) {
+      navLinks.forEach(link => link.classList.remove('active'));
+      const homeLink = document.querySelector('.navbar-nav .nav-link[href="#home"]');
+      if (homeLink) homeLink.classList.add('active');
+      return;
+    }
+
+    sections.forEach((section, idx) => {
+      const sectionTop = section.offsetTop;
+      const sectionBottom = sectionTop + section.offsetHeight;
+
+      if (scrollPos >= sectionTop && scrollPos < sectionBottom) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        navLinks[idx].classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener("scroll", activateOnScroll);
+  window.addEventListener("load", activateOnScroll);
+});
+
+// end nav links
+
+//smooth scroll animation
+
+// Smooth scroll for navbar links
+document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+  link.addEventListener('click', function (e) {
+    const targetId = this.getAttribute('href').slice(1);
+
+    // If it's the Home link (#home), scroll to the top
+    if (targetId === 'home') {
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+      return;
+    }
+
+    // Otherwise scroll normally to the target section
+    const targetSection = document.getElementById(targetId);
+    if (targetSection) {
+      e.preventDefault();
+      window.scrollTo({
+        top: targetSection.offsetTop - 50, // offset for fixed navbar
+        behavior: 'smooth'
+      });
+    }
+  });
+});
+
+
+//hover nav links end 
+
 // animated text
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");

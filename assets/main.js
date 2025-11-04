@@ -61,34 +61,30 @@ document.addEventListener("DOMContentLoaded", () => {
 // end nav links
 
 //smooth scroll animation
-
-// Smooth scroll for navbar links
 document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-  link.addEventListener('click', function (e) {
-    const targetId = this.getAttribute('href').slice(1);
+  link.addEventListener('click', (e) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.getElementById('NavBar');
+    const navbar = document.querySelector('.navbar');
 
-    // If it's the Home link (#home), scroll to the top
-    if (targetId === 'home') {
+    // Smooth scroll
+    if (target) {
       e.preventDefault();
       window.scrollTo({
-        top: 0,
+        top: target.offsetTop - 70, // adjust if you have a fixed navbar height
         behavior: 'smooth'
       });
-      return;
     }
 
-    // Otherwise scroll normally to the target section
-    const targetSection = document.getElementById(targetId);
-    if (targetSection) {
-      e.preventDefault();
-      window.scrollTo({
-        top: targetSection.offsetTop - 50, // offset for fixed navbar
-        behavior: 'smooth'
-      });
+    // Close mobile menu
+    if (navbarCollapse.classList.contains('show')) {
+      new bootstrap.Collapse(navbarCollapse).hide();
+      navbarToggler.classList.remove('active');
+      navbar.classList.remove('nav-bg');
     }
   });
 });
-
 
 //hover nav links end 
 
@@ -96,7 +92,7 @@ document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
 const typedTextSpan = document.querySelector(".typed-text");
 const cursorSpan = document.querySelector(".cursor");
 
-const textArray = ["UI/UX DESIGNER", "GRAPHIC DESIGNER", "BRANDING SPECIALIST", "MOTION GRAPHICS DESIGNER"];
+const textArray = ["UI/UX DESIGNER", "MOTION GRAPHICS DESIGNER", "LOGO DESIGNER", "PHOTO MANIPULATION"];
 const typingDelay = 100;
 const erasingDelay = 50;
 const newTextDelay = 2000; // Delay between current and next text
@@ -259,22 +255,19 @@ window.addEventListener('load', function () {
     }, 1000);
   }, 100);
 });
-
-//navbar
-// Scroll & navbar shrink
+// Navbar scroll effects
 window.addEventListener('scroll', function () {
   const heroContent = document.getElementById('heroContent');
   const navbar = document.querySelector('.navbar');
   const scrollY = window.scrollY;
 
-  // Hero content fade/slide
   if (scrollY > 800) {
     heroContent.classList.add('removed');
   } else {
     heroContent.classList.remove('removed');
   }
 
-  // Navbar shrink effect
+  // Navbar shrink effect + background
   if (scrollY > 100) {
     navbar.classList.add('shrink', 'shadow');
   } else {
@@ -282,26 +275,35 @@ window.addEventListener('scroll', function () {
   }
 });
 
-// Close mobile navbar on link click + reload on Home
+// Close mobile navbar on link click
 document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-  link.addEventListener('click', (e) => {
-    const navbarToggler = document.querySelector('.navbar-collapse');
-    if (navbarToggler.classList.contains('show')) {
-      new bootstrap.Collapse(navbarToggler).hide();
-    }
+  link.addEventListener('click', () => {
+    const navbarCollapse = document.querySelector('.navbar-collapse');
+    const navbarToggler = document.getElementById('NavBar');
+    const navbar = document.querySelector('.navbar');
 
-    // // Reload the page if "Home" is clicked
-    // if (link.textContent.trim().toLowerCase() === "home") {
-    //   e.preventDefault(); 
-    //   location.href = location.origin + location.pathname; 
-    // }
+    if (navbarCollapse.classList.contains('show')) {
+      new bootstrap.Collapse(navbarCollapse).hide();
+      navbarToggler.classList.remove('active');
+      navbar.classList.remove('nav-bg'); // remove background when closed
+    }
   });
 });
 
+// Toggle hamburger animation + background
 const toggler = document.getElementById('NavBar');
+const navbarCollapse = document.querySelector('.navbar-collapse');
+const navbar = document.querySelector('.navbar');
 
 toggler.addEventListener('click', function () {
   this.classList.toggle('active');
+  navbar.classList.toggle('nav-bg'); // ✅ add/remove bg on toggle
+});
+
+// Reset hamburger when Bootstrap collapse hides
+navbarCollapse.addEventListener('hidden.bs.collapse', () => {
+  toggler.classList.remove('active');
+  navbar.classList.remove('nav-bg'); // remove bg when closed
 });
 
 

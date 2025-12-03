@@ -375,7 +375,7 @@ canvas#universe {
 .highlight-1 {
   display: inline-block;
   animation: float 2s ease-in-out infinite, glow 1.5s ease-in-out infinite alternate;
-}
+  }
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
@@ -1048,13 +1048,12 @@ canvas#universe {
   border-radius: 50%;
   width: 45px;
   height: 45px;
-  color: white;
+  color: rgb(223, 21, 21);
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: center;
   background: rgba(0,242,255,0.2);
-  box-shadow: 0 0 15px #ff0066;
   transition: all 0.3s ease;
 }
 .multi-carousel-control-prev:hover,
@@ -1062,8 +1061,8 @@ canvas#universe {
   background: #ff0066;
   color: #000;
 }
-.multi-carousel-control-prev { left: 15px; }
-.multi-carousel-control-next { right: 15px; }
+.multi-carousel-control-prev { left: 25px; }
+.multi-carousel-control-next { right: 25px; }
 
 /* Extra Responsive Tweaks */
 

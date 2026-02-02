@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>𝗠𝗼𝗿𝗲 𝗣𝗿𝗼𝗷𝗲𝗰𝘁𝘀</title>
+<link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+<!-- Bootstrap & Icons -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  font-family: 'Inter', sans-serif;
+  background: #fff;
+  color: #111;
+  margin: 0;
+  padding: 0;
+}
+
+/* HEADER */
+.projects-header {
+  padding: 100px 20px 40px;
+  text-align: center;
+}
+
+.projects-header h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #161831;
+}
+
+.projects-header h1 span {
+  color: #ff2d8b;
+}
+
+/* FILTER BUTTONS STICKY */
+.filter-buttons-wrapper {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 12px 0;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.filter-buttons-wrapper.sticky {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* FILTER BUTTONS */
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  margin: 0;
+}
+
+.filter-btn {
+  padding: 10px 20px;
+  border-radius: 999px;
+  border: 1px solid #eee;
+  background: #f9f9fb;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn.active,
+.filter-btn:hover {
+  background: linear-gradient(135deg, #ff2d8b, #ff72c2);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 10px 25px rgba(255,45,139,0.3);
+}
+
+
+
+/* BACK BUTTON */
+.back-btn {
+  position: absolute;
+  left: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: none;
+  background: #ff2d8b;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 101;
+}
+
+.back-btn:hover {
+  background: #ff72c2;
+}
+
+/* PROJECT GRID */
+.projects-grid {
+  max-width: 1400px;
+  margin: auto;
+  padding: 40px 20px 120px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+/* CARD */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 18px;
+  cursor: pointer;
+  transition: transform .4s ease, opacity .4s ease;
+}
+
+.project-card.hide {
+  display: none;
+}
+
+.project-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  transition: transform .4s ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.08);
+}
+
+/* INFO BOTTOM */
+.project-info {
+  background: #fff;
+  padding: 12px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-info span {
+  font-size: 13px;
+  color: #ff2d8b;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.project-info h5 {
+  font-size: 16px;
+  color: #111;
+  margin: 0;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================
+   HIRE ME BUTTON – MOBILE ONLY
+================================ */
+
+
+
+/* Default (desktop stays the same) */
+.hire-btn-wrapper {
+position: absolute;
+top: 16px;
+left: 10px;
+ 
+}
+ .back-btn {
+    width: 100px;
+    text-align: center;
+ }
+/* Small screens */
+@media (max-width: 1067px) {
+  .filter-buttons-wrapper {
+    flex-direction: column;
+    align-items: center !important;
+    
+  }
+
+  .hire-btn-wrapper {
+    position: static;
+    width: 50%;
+    order: -1; /* 🔥 moves Hire Me to TOP */
+    margin-bottom: 72px;
+  }
+
+  .back-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 10px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-buttons-wrapper {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .hire-btn-wrapper {
+    position: static;
+    width: 100%;
+    order: -1; /* 🔥 moves Hire Me to TOP */
+      margin-bottom: 72px;
+  }
+
+  .back-btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<section class="projects-header position-relative">
+  <h1>More <span>Projects</span></h1>
+</section>
+
+<!-- FILTER BUTTONS STICKY -->
+<div class="filter-buttons-wrapper">
+   <div class="hire-btn-wrapper">
+     <button class="back-btn" onclick="window.location.href='index.html'">
+    <i class="fa fa-arrow-left"></i> Hire Me
+  </button>
+  </div>
+  <div class="filter-buttons">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="landing">Landing Page</button>
+    <button class="filter-btn" data-filter="branding">Branding Design</button>
+    <button class="filter-btn" data-filter="poster">Poster</button>
+    <button class="filter-btn" data-filter="figma">Figma Prototype</button>
+    <button class="filter-btn" data-filter="web">Web & App Design Case Study</button>
+  </div>
+</div>
+
+<!-- PROJECT GRID -->
+<section class="projects-grid">
+
+  <!-- LANDING PROJECT (multiple images example) -->
+  <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/dacreative.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/cryptovibe.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/adesign.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/portfolio.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/promt.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/researchacademy.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="landing" >
+    <img src="assets/images/landingpage/netflix.png" />
+    <div class="project-info">
+      <span>Landing Page</span>
+      <h5>DaCreative Agency</h5>
+    </div>
+  </div>
+
+  <!-- BRANDING -->
+
+    <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/pulsify/branding1.png",
+       "assets/images/Application/pulsify/branding.png",
+       "assets/images/Application/pulsify/branding2.png",
+       "assets/images/Application/pulsify/branding3.png",
+       "assets/images/Application/pulsify/branding4.png",
+       "assets/images/Application/pulsify/branding5.png",
+       "assets/images/Application/pulsify/branding6.png",
+       "assets/images/Application/pulsify/branding7.png"]'>
+    <img src="assets/images/Application/pulsify/branding2.png" />
+    <div class="project-info">
+      <span>Brand Design</span>
+      <h5>Pulsify</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/bayong/branding.png",
+       "assets/images/Application/bayong/branding1.png",
+       "assets/images/Application/bayong/branding2.png",
+       "assets/images/Application/bayong/branding3.png",
+       "assets/images/Application/bayong/branding4.png",
+       "assets/images/Application/bayong/branding5.png",
+       "assets/images/Application/bayong/branding6.png",
+       "assets/images/Application/bayong/branding7.png"]'>
+    <img src="assets/images/Application/bayong/branding2.png"/>
+    <div class="project-info">
+      <span>Brand Design</span>
+      <h5>Bayong</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/cs/branding.png",
+       "assets/images/Application/cs/branding1.png",
+       "assets/images/Application/cs/branding2.png",
+       "assets/images/Application/cs/branding3.png",
+       "assets/images/Application/cs/branding4.png",
+       "assets/images/Application/cs/branding5.png",
+       "assets/images/Application/cs/branding6.png",
+       "assets/images/Application/cs/branding7.png"]'>
+    <img src="assets/images/Application/cs/branding2.png"/>
+    <div class="project-info">
+      <span>Brand Design</span>
+      <h5>C.Santos Santos Construction Corporation</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/cutz/branding.png",
+       "assets/images/Application/cutz/branding1.png",
+       "assets/images/Application/cutz/branding2.png",
+       "assets/images/Application/cutz/branding3.png",
+       "assets/images/Application/cutz/branding4.png",
+       "assets/images/Application/cutz/branding5.png",
+       "assets/images/Application/cutz/branding6.png",
+       "assets/images/Application/cutz/branding7.png"]'>
+    <img src="assets/images/Application/cutz/branding2.png"/>
+    <div class="project-info">
+      <span>Brand Design</span>
+      <h5>Ajay Cutz</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/dnf/branding.png",
+       "assets/images/Application/dnf/branding1.png",
+       "assets/images/Application/dnf/branding2.png",
+       "assets/images/Application/dnf/branding3.png",
+       "assets/images/Application/dnf/branding4.png",
+       "assets/images/Application/dnf/branding5.png",
+       "assets/images/Application/dnf/branding6.png",
+       "assets/images/Application/dnf/branding7.png"]'>
+    <img src="assets/images/Application/dnf/branding2.png"/>
+    <div class="project-info">
+      <span>Brand Design</span>
+      <h5>DNF RUN CLUB</h5>
+    </div>
+  </div>
+
+  
+
+  <div class="project-card shadow" data-category="branding" 
+       data-images='[
+       "assets/images/Application/activefitness/branding.png",
+       "assets/images/Application/activefitness/branding1.png",
+       "assets/images/Application/activefitness/branding3.png",
+       "assets/images/Application/activefitness/branding4.png",
+       "assets/images/Application/activefitness/branding5.png",
+       "assets/images/Application/activefitness/branding6.png",
+       "assets/images/Application/activefitness/branding7.png"]'>
+    <img src="assets/images/Application/activefitness/branding1.png"/>
+    <div class="project-info">
+      <span>Active Fitness Brand Design</span>
+      <h5>Active Fitness</h5>
+    </div>
+  </div>
+
+
+
+
+  <!-- WEB PROJECT -->
+  <div class="project-card shadow" data-category="web" 
+       data-images='[
+       "assets/images/Application/activefitness/activestudy1.png",
+       "assets/images/Application/activefitness/activestudy2.png",
+       "assets/images/Application/activefitness/activestudy3.png",
+       "assets/images/Application/activefitness/activestudy4.png",
+       "assets/images/Application/activefitness/active.png",
+       "assets/images/Application/activefitness/activee.png"]'>
+    <img src="assets/images/Application/activefitness/activethumbnail.png" />
+    <div class="project-info">
+      <span>Fitness Application Design</span>
+      <h5>Active Fitness</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="web" 
+       data-images='[
+       "assets/images/Application/pulsify/pulsestudy1.png",
+       "assets/images/Application/pulsify/pulsestudy2.png",
+      "assets/images/Application/pulsify/pulsestudy3.png",
+      "assets/images/Application/pulsify/pulsestudy4.png",
+       "assets/images/Application/pulsify/pulse.png",
+       "assets/images/Application/pulsify/pulse1.png",
+       "assets/images/Application/pulsify/pulse2.png",
+       "assets/images/Application/pulsify/pulse3.png"
+       ]'>
+    <img src="assets/images/Application/pulsify/Pulsify.png" />
+    <div class="project-info">
+      <span>Music Application Design</span>
+      <h5>Pulsify</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="web" 
+       data-images='["assets/images/Application/bayong/casestudy1.png",
+       "assets/images/Application/bayong/casestudy2.png",
+       "assets/images/Application/bayong/casestudy3.png",
+       "assets/images/Application/bayong/casestudy4.png",
+       "assets/images/Application/bayong/bayong1.png",
+        "assets/images/Application/bayong/bayong2.png",
+         "assets/images/Application/bayong/bayong3.png",
+          "assets/images/Application/bayong/bayong4.png",
+           "assets/images/Application/bayong/bayong5.png",
+            "assets/images/Application/bayong/bayong6.png",
+             "assets/images/Application/bayong/bayong7.png",
+              "assets/images/Application/bayong/bayong8.png",
+               "assets/images/Application/bayong/bayong9.png",
+                "assets/images/Application/bayong/bayong10.png",
+                 "assets/images/Application/bayong/bayong11.png"
+       ]'>
+    <img class="" src="assets/images/Application/bayong/main.png" />
+    <div class="project-info">
+      <span>E-Grocery Application Design</span>
+      <h5>Bayong</h5>
+      <p></p>
+    </div>
+  </div>
+
+
+  <!-- FIGMA -->
+  <div class="project-card shadow" data-category="figma">
+    <a target="_blank" href="https://www.figma.com/proto/yrXI0Bcgz2vHPa6tVg1nP1/Peoduct-Design-Agency?page-id=56%3A13&node-id=1325-96&p=f&viewport=-1340%2C68%2C0.18&t=m97Z3xLYWthKIQ9n-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=1325%3A96&show-proto-sidebar=1&hide-ui=1">
+      <img src="assets/images/landingpage/netflix.png" />
+    </a>
+    <div class="project-info">
+      <span>Web Clone + Custom Icons Prototype</span>
+      <h5>Netflix</h5>
+    </div>
+  </div>
+
+
+    <div class="project-card shadow" data-category="figma">
+    <a target="_blank" href="https://www.figma.com/proto/yrXI0Bcgz2vHPa6tVg1nP1/Adams-Apple-Design?node-id=0-1&t=EdfPwjg2GAfGd1Q6-1">
+      <img src="assets/images/Application/activefitness/activethumbnail.png" />
+    </a>
+    <div class="project-info">
+      <span>Fitness Application Prototype</span>
+      <h5>Active Fitness</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="figma">
+       <a target="_blank" href="https://www.figma.com/proto/yrXI0Bcgz2vHPa6tVg1nP1/Adams-Apple-Design?node-id=1606-2363&t=EdfPwjg2GAfGd1Q6-1">
+      <img src="assets/images/Application/pulsify/Pulsify.png" />
+    </a>
+    <div class="project-info">
+      <span class="">Music Application Prototype</span>
+      <h5 class="fw-medium">Pulsify</h5>
+    </div>
+  </div>
+
+  <div class="project-card shadow" data-category="figma">
+       <a target="_blank" href="https://www.figma.com/proto/wZSwIeV07KPPuiGXyth6WH/Adams-Apple-Design?page-id=0%3A1&node-id=20-4250&p=f&viewport=4284%2C-1631%2C0.42&t=Od8LeNHVFvLitTOB-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=20%3A4244&hide-ui=1">
+      <img src="assets/images/Application/bayong/main.png" />
+    </a>
+    <div class="project-info">
+      <span class="">E-Grocery Application Prototype</span>
+      <h5 class="fw-medium">Bayong</h5>
+    </div>
+  </div>
+
+
+  <!-- POSTER  -->
+  <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/jesus.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/glowing.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/imagination.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/lonzo.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/dp.png" />
+    <div class="project-info">
+   <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster//ivan.png" />
+    <div class="project-info">
+     <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/james.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/kobe.png" />
+    <div class="project-info">
+      <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/lcmf.png" />
+    <div class="project-info">
+     <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/kobe2.png" />
+    <div class="project-info">
+       <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/momentum.png" />
+    <div class="project-info">
+       <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/wm.png" />
+    <div class="project-info">
+       <span>Poster Design</span>
+    </div>
+  </div>
+
+   <div class="project-card shadow" data-category="poster" >
+    <img src="assets/images/poster/seven.png" />
+    <div class="project-info">
+       <span>Poster Design</span>
+    </div>
+  </div>
+
+</section>
+
+<!-- MODAL CAROUSEL FOR SINGLE PROJECT -->
+<div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content bg-transparent border-0">
+      <div class="modal-body p-0 position-relative">
+        <div id="projectCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner" id="carouselInner"></div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#projectCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#projectCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+  </div>
+</div>
+
+<!-- SCRIPTS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const buttons = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+const filterWrapper = document.querySelector('.filter-buttons-wrapper');
+const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
+const carouselInner = document.getElementById('carouselInner');
+
+// FILTER FUNCTIONALITY
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    buttons.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.dataset.filter;
+    cards.forEach(card => {
+      if (filter === 'all' || card.dataset.category === filter) {
+        card.classList.remove('hide');
+      } else {
+        card.classList.add('hide');
+      }
+    });
+  });
+});
+
+// MODAL CAROUSEL PER PROJECT
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const images = JSON.parse(card.dataset.images || '["' + card.querySelector('img').src + '"]');
+    carouselInner.innerHTML = '';
+    images.forEach((src, index) => {
+      const div = document.createElement('div');
+      div.className = 'carousel-item' + (index === 0 ? ' active' : '');
+      div.innerHTML = `<img src="${src}" class="d-block w-100 mx-auto rounded" alt="Project Image">`;
+      carouselInner.appendChild(div);
+    });
+    projectModal.show();
+  });
+});
+
+// STICKY BACKGROUND
+window.addEventListener('scroll', () => {
+  const headerHeight = document.querySelector('.projects-header').offsetHeight;
+  if (window.scrollY > headerHeight - 50) {
+    filterWrapper.classList.add('sticky');
+  } else {
+    filterWrapper.classList.remove('sticky');
+  }
+});
+</script>
+
+</body>
+</html>

@@ -35,21 +35,14 @@ body {
   color: #ff2d8b;
 }
 
-/* FILTER BUTTONS STICKY */
+/* FILTER BUTTONS WRAPPER */
 .filter-buttons-wrapper {
   position: sticky;
   top: 0;
   z-index: 100;
-  padding: 12px 0;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.filter-buttons-wrapper.sticky {
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  padding: 10px 0;
 }
 
 /* FILTER BUTTONS */
@@ -57,8 +50,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  margin: 0;
+  gap: 12px;
 }
 
 .filter-btn {
@@ -79,24 +71,14 @@ body {
   box-shadow: 0 10px 25px rgba(255,45,139,0.3);
 }
 
-
-
-/* BACK BUTTON */
-.back-btn {
-  position: absolute;
-  left: 20px;
-  padding: 8px 16px;
-  font-size: 14px;
-  border-radius: 8px;
-  border: none;
+/* HIRE ME BUTTON */
+.btn-pink {
   background: #ff2d8b;
   color: #fff;
-  cursor: pointer;
-  transition: background 0.3s ease;
-  z-index: 101;
+  border: none;
 }
 
-.back-btn:hover {
+.btn-pink:hover {
   background: #ff72c2;
 }
 
@@ -173,96 +155,46 @@ body {
     grid-template-columns: 1fr;
   }
 }
-
-/* ================================
-   HIRE ME BUTTON – MOBILE ONLY
-================================ */
-
-
-
-/* Default (desktop stays the same) */
-.hire-btn-wrapper {
-position: absolute;
-top: 16px;
-left: 10px;
- 
-}
- .back-btn {
-    width: 100px;
-    text-align: center;
- }
-/* Small screens */
-@media (max-width: 1067px) {
-  .filter-buttons-wrapper {
-    flex-direction: column;
-    align-items: center !important;
-    
-  }
-
-  .hire-btn-wrapper {
-    position: static;
-    width: 50%;
-    order: -1; /* 🔥 moves Hire Me to TOP */
-    margin-bottom: 72px;
-  }
-
-  .back-btn {
-    width: 100%;
-    text-align: center;
-    margin-top: 10px !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .filter-buttons-wrapper {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .hire-btn-wrapper {
-    position: static;
-    width: 100%;
-    order: -1; /* 🔥 moves Hire Me to TOP */
-      margin-bottom: 72px;
-  }
-
-  .back-btn {
-    width: 100%;
-    text-align: center;
-  }
-}
-
 </style>
 </head>
 <body>
 
 <!-- HEADER -->
-<section class="projects-header position-relative">
-  <h1>More <span>Projects</span></h1>
-</section>
 
-<!-- FILTER BUTTONS STICKY -->
+<!-- FILTER NAVBAR -->
 <div class="filter-buttons-wrapper">
-   <div class="hire-btn-wrapper">
-     <button class="back-btn" onclick="window.location.href='index.html'">
-    <i class="fa fa-arrow-left"></i> Hire Me
-  </button>
-  </div>
-  <div class="filter-buttons">
-    <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="landing">Landing Page</button>
-    <button class="filter-btn" data-filter="branding">Branding Design</button>
-    <button class="filter-btn" data-filter="poster">Poster</button>
-    <button class="filter-btn" data-filter="figma">Figma Prototype</button>
-    <button class="filter-btn" data-filter="web">Web & App Design Case Study</button>
-  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light w-100">
+    <div class="container-fluid">
+      <!-- Hire Me Button -->
+      <button class="btn btn-pink me-3 mb-2 mb-lg-0" onclick="window.location.href='index.html'">
+        <i class="fa fa-arrow-left"></i> Hire Me
+      </button>
+
+      <!-- Hamburger Toggle -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#filterNavbar" aria-controls="filterNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- COLLAPSIBLE FILTER BUTTONS -->
+      <div class="collapse navbar-collapse" id="filterNavbar">
+        <div class="filter-buttons mx-auto my-2 my-lg-0">
+          <button class="filter-btn active" data-filter="all">All</button>
+          <button class="filter-btn" data-filter="landing">Landing Page</button>
+          <button class="filter-btn" data-filter="branding">Branding Design</button>
+          <button class="filter-btn" data-filter="poster">Poster</button>
+          <button class="filter-btn" data-filter="figma">Figma Prototype</button>
+          <button class="filter-btn" data-filter="web">Web & App Design</button>
+        </div>
+      </div>
+    </div>
+  </nav>
 </div>
 
 <!-- PROJECT GRID -->
 <section class="projects-grid">
 
-  <!-- LANDING PROJECT (multiple images example) -->
-  <div class="project-card shadow" data-category="landing" >
+  <!-- Example Project Card -->
+  <div class="project-card shadow" data-category="landing" data-images='["assets/images/landingpage/dacreative.png"]'>
     <img src="assets/images/landingpage/dacreative.png" />
     <div class="project-info">
       <span>Landing Page</span>
@@ -519,7 +451,7 @@ left: 10px;
   </div>
 
   <div class="project-card shadow" data-category="figma">
-       <a target="_blank" href="https://www.figma.com/proto/wZSwIeV07KPPuiGXyth6WH/Adams-Apple-Design?page-id=0%3A1&node-id=20-4250&p=f&viewport=4284%2C-1631%2C0.42&t=Od8LeNHVFvLitTOB-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=20%3A4244&hide-ui=1">
+       <a target="_blank" href="https://www.figma.com/proto/wZSwIeV07KPPuiGXyth6WH/Adams-Apple-Design?page-id=0%3A1&node-id=20-4244&viewport=6658%2C-2587%2C0.68&t=UPIgT2awbWJ2rkg6-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=20%3A4244&hide-ui=1">
       <img src="assets/images/Application/bayong/main.png" />
     </a>
     <div class="project-info">
@@ -618,13 +550,13 @@ left: 10px;
    <div class="project-card shadow" data-category="poster" >
     <img src="assets/images/poster/seven.png" />
     <div class="project-info">
-       <span>Poster Design</span>
+      <span>Poster Design</span>
     </div>
   </div>
 
 </section>
 
-<!-- MODAL CAROUSEL FOR SINGLE PROJECT -->
+<!-- MODAL CAROUSEL -->
 <div class="modal fade" id="projectModal" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-xl">
     <div class="modal-content bg-transparent border-0">
@@ -651,18 +583,17 @@ left: 10px;
 <script>
 const buttons = document.querySelectorAll('.filter-btn');
 const cards = document.querySelectorAll('.project-card');
-const filterWrapper = document.querySelector('.filter-buttons-wrapper');
 const projectModal = new bootstrap.Modal(document.getElementById('projectModal'));
 const carouselInner = document.getElementById('carouselInner');
 
-// FILTER FUNCTIONALITY
+// FILTER FUNCTION
 buttons.forEach(btn => {
   btn.addEventListener('click', () => {
     buttons.forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const filter = btn.dataset.filter;
     cards.forEach(card => {
-      if (filter === 'all' || card.dataset.category === filter) {
+      if(filter === 'all' || card.dataset.category === filter){
         card.classList.remove('hide');
       } else {
         card.classList.add('hide');
@@ -671,29 +602,19 @@ buttons.forEach(btn => {
   });
 });
 
-// MODAL CAROUSEL PER PROJECT
+// MODAL CAROUSEL
 cards.forEach(card => {
   card.addEventListener('click', () => {
     const images = JSON.parse(card.dataset.images || '["' + card.querySelector('img').src + '"]');
     carouselInner.innerHTML = '';
-    images.forEach((src, index) => {
+    images.forEach((src,index)=>{
       const div = document.createElement('div');
-      div.className = 'carousel-item' + (index === 0 ? ' active' : '');
+      div.className = 'carousel-item'+(index===0?' active':'');
       div.innerHTML = `<img src="${src}" class="d-block w-100 mx-auto rounded" alt="Project Image">`;
       carouselInner.appendChild(div);
     });
     projectModal.show();
   });
-});
-
-// STICKY BACKGROUND
-window.addEventListener('scroll', () => {
-  const headerHeight = document.querySelector('.projects-header').offsetHeight;
-  if (window.scrollY > headerHeight - 50) {
-    filterWrapper.classList.add('sticky');
-  } else {
-    filterWrapper.classList.remove('sticky');
-  }
 });
 </script>
 

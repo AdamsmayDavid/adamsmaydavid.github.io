@@ -875,9 +875,9 @@ nav.bg-trans {
 /* Grid */
 .timeline-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
   gap: 20px;
-  max-width: 1300px;
+  max-width: 1700px;
   margin: 0 auto;
 }
 
@@ -957,19 +957,21 @@ nav.bg-trans {
   margin-top: 10px;
 }
 
-.timeline-details li {
-  margin-bottom: 8px;
-  font-size: 0.8rem;
-  color: #5a5a5a;
-  line-height: 1.6;
+.timeline-details {
+  opacity: 0;
+  transform: translateY(15px);
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  margin-top: 10px;
   text-align: left !important;
+  color: #555;
 }
 
-/* Reveal on hover */
 .timeline-card:hover .timeline-details {
   opacity: 1;
   transform: translateY(0);
-  max-height: 200px;
+  max-height: 100%;
 }
 
 /* Text */

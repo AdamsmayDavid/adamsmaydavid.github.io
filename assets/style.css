@@ -1345,3 +1345,27 @@ footer {
 footer span#year {
   font-weight: 700;
 }
+
+
+.see-more {
+  text-align: center;
+  margin: 50px 0 70px;
+}
+
+.see-more a {
+  display: inline-block;
+  padding: 14px 30px;
+  background: linear-gradient(90deg, #ff2d8b, #ff72c2);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(255, 45, 139, 0.35);
+  transition: all 0.3s ease;
+}
+
+.see-more a:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 10px 24px rgba(255, 45, 139, 0.45);
+}
